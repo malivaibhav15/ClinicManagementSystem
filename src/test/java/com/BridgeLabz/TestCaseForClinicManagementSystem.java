@@ -37,7 +37,6 @@ public class TestCaseForClinicManagementSystem {
         Assert.assertEquals(doctor2.getName(), data.get(1).getName());
         Assert.assertEquals(doctor3.getName(), data.get(2).getName());
         Assert.assertEquals(doctor4.getName(), data.get(3).getName());
-
     }
 
     @Test
@@ -56,8 +55,23 @@ public class TestCaseForClinicManagementSystem {
         Assert.assertEquals(patient2.getName(), data.get(1).getName());
         Assert.assertEquals(patient3.getName(), data.get(2).getName());
         Assert.assertEquals(patient4.getName(), data.get(3).getName());
-
-
     }
 
+    @Test
+    public void givenDoctor_WhenUpdate_ShouldReturnTrue() throws IOException {
+        Doctor doctor = new Doctor("Deepak","104","Psychiatrist","5-6");
+        DoctorInterface doctorInterface = new ClinicManagementSystemMain();
+        doctorInterface.updateDoctor(doctor, doctorFilePath);
+        ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>(){});
+        Assert.assertEquals(doctor.getSchedule(), data.get(3).getSchedule());
+    }
+
+    @Test
+    public void givenPatient_WhenUpdate_ShouldReturnTrue() throws IOException {
+        Patient patient = new Patient("Mno", "3", "3212301785", "26");
+        PatientInterface patientInterface = new ClinicManagementSystemMain();
+        patientInterface.updatePatient(patient, patientFilePath);
+        ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>(){});
+        Assert.assertEquals(patient.getMobileNumber(), data.get(2).getMobileNumber());
+    }
 }
