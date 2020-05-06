@@ -1,26 +1,26 @@
 [
   {
-    "name": "Vaibhav" ,
-    "id": "101" ,
-    "specialization": "Surgery" ,
+    "name": "Vaibhav",
+    "id": "101",
+    "specialization": "Surgery",
     "schedule": "10-11"
-  } ,
+  },
   {
-    "name": "Vishal" ,
-    "id": "102" ,
-    "specialization": "Gynaecologist" ,
+    "name": "Vishal",
+    "id": "102",
+    "specialization": "Gynaecologist",
     "schedule": "11-12"
-  } ,
+  },
   {
-    "name": "Shailesh" ,
-    "id": "103" ,
-    "specialization": "Dentist" ,
+    "name": "Shailesh",
+    "id": "103",
+    "specialization": "Dentist",
     "schedule": "12-1"
-  } ,
+  },
   {
-    "name": "Deepak" ,
-    "id": "104" ,
-    "specialization": "Psychiatrist" ,
-    "schedule": "1-2"
+    "name": "Deepak",
+    "id": "104",
+    "specialization": "Psychiatrist",
+    "schedule": "5-6"
   }
 ]
