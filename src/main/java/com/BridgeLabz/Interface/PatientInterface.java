@@ -11,4 +11,6 @@ public interface PatientInterface
     void updatePatient(Patient patient, String patientFilePath) throws IOException;
 
     boolean listOfPatient(String patientFilePath);
+
+    void searchPatient(Patient patient, String patientFilePath) throws IOException;
 }
