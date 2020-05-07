@@ -19,7 +19,6 @@ public class TestCaseForClinicManagementSystem {
     String doctorFilePath = "src/main/resources/AddDoctor.json";
     String patientFilePath = "src/main/resources/AddPatient.json";
     ObjectMapper objectMapper = new ObjectMapper();
-    ClinicManagementSystemMain clinicManagementSystemMain = new ClinicManagementSystemMain();
 
     @Test
     public void givenAddDoctor_WhenProper_ShouldReturnTrue() throws IOException {
@@ -87,5 +86,23 @@ public class TestCaseForClinicManagementSystem {
         PatientInterface patientInterface = new ClinicManagementSystemMain();
         boolean patientList = patientInterface.listOfPatient(patientFilePath);
         Assert.assertTrue(patientList);
+    }
+
+    @Test
+    public void givenWhenUserChooses_ToSearchDoctor_ShouldReturnSearchedResult() throws IOException {
+        Doctor doctor = new Doctor("Vaibhav", "101", "Surgery", "10-11");
+        DoctorInterface doctorInterface = new ClinicManagementSystemMain();
+        doctorInterface.searchDoctor(doctor, doctorFilePath);
+        ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>(){});
+        Assert.assertEquals(doctor.getName(), data.get(0).getName());
+    }
+
+    @Test
+    public void givenWhenUserChooses_ToSearchPatient_ShouldReturnSearchedResult() throws IOException {
+        Patient patient = new Patient("Mno", "3", "7410258963", "26");
+        PatientInterface patientInterface = new ClinicManagementSystemMain();
+        patientInterface.searchPatient(patient, patientFilePath);
+        ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>(){});
+        Assert.assertEquals(patient.getName(), data.get(2).getName());
     }
 }
