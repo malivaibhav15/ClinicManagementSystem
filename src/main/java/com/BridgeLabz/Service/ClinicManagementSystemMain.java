@@ -89,4 +89,14 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
         }
 
     }
+
+    @Override
+    public void popularSpecialization(Doctor doctor1, String doctorFilePath) throws IOException {
+        ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
+        for (Doctor doctor : doctorArrayList) {
+            if (doctor.getSpecialization().equalsIgnoreCase(doctor1.getSpecialization()))
+                System.out.println("Popular specialization in this clinic is : " + doctor.getSpecialization());
+        }
+    }
+
 }
