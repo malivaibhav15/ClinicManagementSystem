@@ -18,8 +18,8 @@ public class TestCaseForClinicManagementSystem {
 
     String doctorFilePath = "src/main/resources/AddDoctor.json";
     String patientFilePath = "src/main/resources/AddPatient.json";
-
     ObjectMapper objectMapper = new ObjectMapper();
+    ClinicManagementSystemMain clinicManagementSystemMain = new ClinicManagementSystemMain();
 
     @Test
     public void givenAddDoctor_WhenProper_ShouldReturnTrue() throws IOException {
@@ -73,5 +73,19 @@ public class TestCaseForClinicManagementSystem {
         patientInterface.updatePatient(patient, patientFilePath);
         ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>(){});
         Assert.assertEquals(patient.getMobileNumber(), data.get(2).getMobileNumber());
+    }
+
+    @Test
+    public void givenWhenUser_ChoosesToSeeDoctorList_ShouldReturnList() throws IOException {
+        DoctorInterface doctorInterface = new ClinicManagementSystemMain();
+        boolean doctorList = doctorInterface.listOfDoctors(doctorFilePath);
+        Assert.assertTrue(doctorList);
+    }
+
+    @Test
+    public void givenWhenUser_ChoosesToSeePatientList_ShouldReturnList() {
+        PatientInterface patientInterface = new ClinicManagementSystemMain();
+        boolean patientList = patientInterface.listOfPatient(patientFilePath);
+        Assert.assertTrue(patientList);
     }
 }
