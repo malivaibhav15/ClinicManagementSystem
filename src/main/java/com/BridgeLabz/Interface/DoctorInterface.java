@@ -16,4 +16,5 @@ public interface DoctorInterface
 
     void popularSpecialization(Doctor doctor1, String doctorFilePath) throws IOException;
 
+    void popularDoctor(Doctor doctor4, String doctorFilePath) throws IOException;
 }
