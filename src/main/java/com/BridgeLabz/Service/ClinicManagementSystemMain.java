@@ -99,4 +99,13 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
         }
     }
 
+    @Override
+    public void popularDoctor(Doctor doctor4, String doctorFilePath) throws IOException {
+        ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
+        for (Doctor doctor : doctorArrayList) {
+            if (doctor.getName().equalsIgnoreCase(doctor4.getName()))
+                System.out.println("Most popular doctor in this clinic is : Dr."+doctor.getName());
+        }
+    }
+
 }
