@@ -105,4 +105,16 @@ public class TestCaseForClinicManagementSystem {
         ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>(){});
         Assert.assertEquals(patient.getName(), data.get(2).getName());
     }
+
+    @Test
+    public void givenWhenUserChooses_ToSeePopularSpecialization_ShouldReturnPopularSpecialization() throws IOException {
+        Doctor doctor1 = new Doctor("Vaibhav","101","Surgery","10-11");
+        Doctor doctor2 = new Doctor("Vishal","102","Gynaecologist","11-12");
+        Doctor doctor3 = new Doctor("Shailesh","103","Dentist","12-1");
+        Doctor doctor4 = new Doctor("Deepak","104","Psychiatrist","1-2");
+        DoctorInterface doctorInterface = new ClinicManagementSystemMain();
+        doctorInterface.popularSpecialization(doctor1, doctorFilePath);
+        ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>(){});
+        Assert.assertEquals(doctor1.getSpecialization(), data.get(0).getSpecialization());
+    }
 }
