@@ -13,4 +13,7 @@ public interface DoctorInterface
     boolean listOfDoctors(String doctorFilePath) throws IOException;
 
     void searchDoctor(Doctor doctor, String doctorFilePath) throws IOException;
+
+    void popularSpecialization(Doctor doctor1, String doctorFilePath) throws IOException;
+
 }
