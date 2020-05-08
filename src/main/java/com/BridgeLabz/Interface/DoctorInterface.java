@@ -12,9 +12,12 @@ public interface DoctorInterface
 
     boolean listOfDoctors(String doctorFilePath) throws IOException;
 
-    void searchDoctor(Doctor doctor, String doctorFilePath) throws IOException;
+    void searchDoctorByName(Doctor doctor, String doctorFilePath) throws IOException;
 
     void popularSpecialization(Doctor doctor1, String doctorFilePath) throws IOException;
 
     void popularDoctor(Doctor doctor4, String doctorFilePath) throws IOException;
+
+    void searchDoctorById(Doctor doctor, String doctorFilePath) throws IOException;
+
 }
