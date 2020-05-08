@@ -1,7 +1,5 @@
 package com.BridgeLabz;
 
-import com.BridgeLabz.Interface.DoctorInterface;
-import com.BridgeLabz.Interface.PatientInterface;
 import com.BridgeLabz.Model.Doctor;
 import com.BridgeLabz.Model.Patient;
 import com.BridgeLabz.Service.ClinicManagementSystemMain;
@@ -121,6 +119,14 @@ public class TestCaseForClinicManagementSystem {
         clinicManagementSystemMain.searchPatientByName(patient, patientFilePath);
         ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>(){});
         Assert.assertEquals(patient.getName(), data.get(2).getName());
+    }
+
+    @Test
+    public void givenWhenUserChooses_ToSearchPatientById_ShouldReturnSearchedResult() throws IOException {
+        Patient patient = new Patient("Abc", "1", "1213456798", "24");
+        clinicManagementSystemMain.searchPatientByMobile(patient, patientFilePath);
+        ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>(){});
+        Assert.assertEquals(patient.getMobileNumber(), data.get(0).getMobileNumber());
     }
 
     @Test
