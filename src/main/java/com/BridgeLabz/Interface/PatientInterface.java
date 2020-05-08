@@ -12,5 +12,7 @@ public interface PatientInterface
 
     boolean listOfPatient(String patientFilePath);
 
-    void searchPatient(Patient patient, String patientFilePath) throws IOException;
+    void searchPatientByName(Patient patient, String patientFilePath) throws IOException;
+
+    void searchPatientByMobile(Patient patient, String patientFilePath) throws IOException;
 }
