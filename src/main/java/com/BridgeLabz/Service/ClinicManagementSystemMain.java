@@ -72,7 +72,7 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
     }
 
     @Override
-    public void searchDoctor(Doctor doctor, String doctorFilePath) throws IOException {
+    public void searchDoctorByName(Doctor doctor, String doctorFilePath) throws IOException {
         ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
         for (Doctor doctor1 : doctorArrayList) {
             if (doctor1.getName().equalsIgnoreCase(doctor.getName()))
@@ -81,7 +81,17 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
     }
 
     @Override
-    public void searchPatient(Patient patient, String patientFilePath) throws IOException {
+    public void searchDoctorById(Doctor doctor, String doctorFilePath) throws IOException {
+        ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
+        for (Doctor doctor1 : doctorArrayList) {
+            if (doctor1.getId().equals(doctor.getId()))
+                System.out.println(doctor1);
+        }
+    }
+
+
+    @Override
+    public void searchPatientByName(Patient patient, String patientFilePath) throws IOException {
         ArrayList<Patient> patientArrayList = fileSystem.readFilePatient(patientFilePath);
         for (Patient patient1 : patientArrayList) {
             if (patient1.getName().equalsIgnoreCase(patient.getName()))
@@ -107,5 +117,4 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
                 System.out.println("Most popular doctor in this clinic is : Dr."+doctor.getName());
         }
     }
-
 }
