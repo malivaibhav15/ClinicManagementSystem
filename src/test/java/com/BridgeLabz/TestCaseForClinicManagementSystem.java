@@ -18,6 +18,7 @@ public class TestCaseForClinicManagementSystem {
 
     String doctorFilePath = "src/main/resources/AddDoctor.json";
     String patientFilePath = "src/main/resources/AddPatient.json";
+    ClinicManagementSystemMain clinicManagementSystemMain = new ClinicManagementSystemMain();
     ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
@@ -26,11 +27,10 @@ public class TestCaseForClinicManagementSystem {
         Doctor doctor2 = new Doctor("Vishal","102","Gynaecologist","11-12");
         Doctor doctor3 = new Doctor("Shailesh","103","Dentist","12-1");
         Doctor doctor4 = new Doctor("Deepak","104","Psychiatrist","1-2");
-        DoctorInterface doctorInterface = new ClinicManagementSystemMain();
-        doctorInterface.addDoctor(doctor1,doctorFilePath);
-        doctorInterface.addDoctor(doctor2,doctorFilePath);
-        doctorInterface.addDoctor(doctor3,doctorFilePath);
-        doctorInterface.addDoctor(doctor4,doctorFilePath);
+        clinicManagementSystemMain.addDoctor(doctor1,doctorFilePath);
+        clinicManagementSystemMain.addDoctor(doctor2,doctorFilePath);
+        clinicManagementSystemMain.addDoctor(doctor3,doctorFilePath);
+        clinicManagementSystemMain.addDoctor(doctor4,doctorFilePath);
         ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>(){});
         Assert.assertEquals(doctor1.getName(), data.get(0).getName());
         Assert.assertEquals(doctor2.getName(), data.get(1).getName());
@@ -44,11 +44,10 @@ public class TestCaseForClinicManagementSystem {
         Patient patient2 = new Patient("Pqr", "2", "3216549876", "25");
         Patient patient3 = new Patient("Mno", "3", "7410258963", "26");
         Patient patient4 = new Patient("Xyz", "4", "9876541238", "27");
-        PatientInterface patientInterface = new ClinicManagementSystemMain();
-        patientInterface.addPatient(patient1, patientFilePath);
-        patientInterface.addPatient(patient2, patientFilePath);
-        patientInterface.addPatient(patient3, patientFilePath);
-        patientInterface.addPatient(patient4, patientFilePath);
+        clinicManagementSystemMain.addPatient(patient1, patientFilePath);
+        clinicManagementSystemMain.addPatient(patient2, patientFilePath);
+        clinicManagementSystemMain.addPatient(patient3, patientFilePath);
+        clinicManagementSystemMain.addPatient(patient4, patientFilePath);
         ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>(){});
         Assert.assertEquals(patient1.getName(), data.get(0).getName());
         Assert.assertEquals(patient2.getName(), data.get(1).getName());
@@ -59,8 +58,7 @@ public class TestCaseForClinicManagementSystem {
     @Test
     public void givenDoctor_WhenUpdate_ShouldReturnTrue() throws IOException {
         Doctor doctor = new Doctor("Deepak","104","Psychiatrist","5-6");
-        DoctorInterface doctorInterface = new ClinicManagementSystemMain();
-        doctorInterface.updateDoctor(doctor, doctorFilePath);
+        clinicManagementSystemMain.updateDoctor(doctor, doctorFilePath);
         ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>(){});
         Assert.assertEquals(doctor.getSchedule(), data.get(3).getSchedule());
     }
@@ -68,40 +66,43 @@ public class TestCaseForClinicManagementSystem {
     @Test
     public void givenPatient_WhenUpdate_ShouldReturnTrue() throws IOException {
         Patient patient = new Patient("Mno", "3", "3212301785", "26");
-        PatientInterface patientInterface = new ClinicManagementSystemMain();
-        patientInterface.updatePatient(patient, patientFilePath);
+        clinicManagementSystemMain.updatePatient(patient, patientFilePath);
         ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>(){});
         Assert.assertEquals(patient.getMobileNumber(), data.get(2).getMobileNumber());
     }
 
     @Test
     public void givenWhenUser_ChoosesToSeeDoctorList_ShouldReturnList() throws IOException {
-        DoctorInterface doctorInterface = new ClinicManagementSystemMain();
-        boolean doctorList = doctorInterface.listOfDoctors(doctorFilePath);
+        boolean doctorList = clinicManagementSystemMain.listOfDoctors(doctorFilePath);
         Assert.assertTrue(doctorList);
     }
 
     @Test
     public void givenWhenUser_ChoosesToSeePatientList_ShouldReturnList() {
-        PatientInterface patientInterface = new ClinicManagementSystemMain();
-        boolean patientList = patientInterface.listOfPatient(patientFilePath);
+        boolean patientList = clinicManagementSystemMain.listOfPatient(patientFilePath);
         Assert.assertTrue(patientList);
     }
 
     @Test
-    public void givenWhenUserChooses_ToSearchDoctor_ShouldReturnSearchedResult() throws IOException {
+    public void givenWhenUserChooses_ToSearchDoctorByName_ShouldReturnSearchedResult() throws IOException {
         Doctor doctor = new Doctor("Vaibhav", "101", "Surgery", "10-11");
-        DoctorInterface doctorInterface = new ClinicManagementSystemMain();
-        doctorInterface.searchDoctor(doctor, doctorFilePath);
+        clinicManagementSystemMain.searchDoctorByName(doctor, doctorFilePath);
         ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>(){});
         Assert.assertEquals(doctor.getName(), data.get(0).getName());
     }
 
     @Test
-    public void givenWhenUserChooses_ToSearchPatient_ShouldReturnSearchedResult() throws IOException {
+    public void givenWhenUserChooses_ToSearchDoctorById_ShouldReturnSearchedResult() throws IOException {
+        Doctor doctor = new Doctor("Vishal","102","Gynaecologist","11-12");
+        clinicManagementSystemMain.searchDoctorById(doctor, doctorFilePath);
+        ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>(){});
+        Assert.assertEquals(doctor.getId(), data.get(1).getId());
+    }
+
+    @Test
+    public void givenWhenUserChooses_ToSearchPatientByName_ShouldReturnSearchedResult() throws IOException {
         Patient patient = new Patient("Mno", "3", "7410258963", "26");
-        PatientInterface patientInterface = new ClinicManagementSystemMain();
-        patientInterface.searchPatient(patient, patientFilePath);
+        clinicManagementSystemMain.searchPatientByName(patient, patientFilePath);
         ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>(){});
         Assert.assertEquals(patient.getName(), data.get(2).getName());
     }
@@ -112,8 +113,7 @@ public class TestCaseForClinicManagementSystem {
         Doctor doctor2 = new Doctor("Vishal","102","Gynaecologist","11-12");
         Doctor doctor3 = new Doctor("Shailesh","103","Dentist","12-1");
         Doctor doctor4 = new Doctor("Deepak","104","Psychiatrist","1-2");
-        DoctorInterface doctorInterface = new ClinicManagementSystemMain();
-        doctorInterface.popularSpecialization(doctor1, doctorFilePath);
+        clinicManagementSystemMain.popularSpecialization(doctor1, doctorFilePath);
         ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>(){});
         Assert.assertEquals(doctor1.getSpecialization(), data.get(0).getSpecialization());
     }
@@ -124,9 +124,9 @@ public class TestCaseForClinicManagementSystem {
         Doctor doctor2 = new Doctor("Vishal","102","Gynaecologist","11-12");
         Doctor doctor3 = new Doctor("Shailesh","103","Dentist","12-1");
         Doctor doctor4 = new Doctor("Deepak","104","Psychiatrist","1-2");
-        DoctorInterface doctorInterface = new ClinicManagementSystemMain();
-        doctorInterface.popularDoctor(doctor4, doctorFilePath);
+        clinicManagementSystemMain.popularDoctor(doctor4, doctorFilePath);
         ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>(){});
         Assert.assertEquals(doctor4.getName(), data.get(3).getName());
     }
+
 }
