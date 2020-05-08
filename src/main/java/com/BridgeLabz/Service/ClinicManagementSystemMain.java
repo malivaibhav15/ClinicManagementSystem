@@ -76,7 +76,7 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
         ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
         for (Doctor doctor1 : doctorArrayList) {
             if (doctor1.getName().equalsIgnoreCase(doctor.getName()))
-                System.out.println(doctor1);
+                System.out.println("Entered name matched with the doctor : "+doctor1);
         }
     }
 
@@ -85,7 +85,7 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
         ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
         for (Doctor doctor1 : doctorArrayList) {
             if (doctor1.getId().equals(doctor.getId()))
-                System.out.println(doctor1);
+                System.out.println("Entered id matched with the doctor : "+doctor1);
         }
     }
 
@@ -94,7 +94,7 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
         ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
         for (Doctor doctor1 : doctorArrayList) {
             if (doctor1.getSpecialization().equalsIgnoreCase(doctor.getSpecialization()))
-                System.out.println(doctor1);
+                System.out.println("Entered specialization matched with the doctor : "+doctor1);
         }
     }
 
@@ -103,7 +103,7 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
         ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
         for (Doctor doctor1 : doctorArrayList) {
             if (doctor1.getSchedule().equals(doctor.getSchedule()))
-                System.out.println(doctor1);
+                System.out.println("Entered availability matched with the doctor : "+doctor1);
         }
     }
 
@@ -112,7 +112,7 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
         ArrayList<Patient> patientArrayList = fileSystem.readFilePatient(patientFilePath);
         for (Patient patient1 : patientArrayList) {
             if (patient1.getName().equalsIgnoreCase(patient.getName()))
-                System.out.println(patient);
+                System.out.println("Entered name matched with patient : "+patient1);
         }
 
     }
@@ -122,7 +122,16 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
         ArrayList<Patient> patientArrayList = fileSystem.readFilePatient(patientFilePath);
         for (Patient patient1 : patientArrayList) {
             if (patient1.getMobileNumber().equals(patient.getMobileNumber()))
-                System.out.println(patient1);
+                System.out.println("Entered mobile number matched with patient : "+patient1);
+        }
+    }
+
+    @Override
+    public void searchPatientById(Patient patient, String patientFilePath) throws IOException {
+        ArrayList<Patient> patientArrayList = fileSystem.readFilePatient(patientFilePath);
+        for (Patient patient1 : patientArrayList) {
+            if(patient1.getId().equals(patient.getId()))
+                System.out.println("Entered id matched with patient : "+patient1);
         }
     }
 
