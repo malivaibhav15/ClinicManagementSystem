@@ -108,6 +108,14 @@ public class TestCaseForClinicManagementSystem {
     }
 
     @Test
+    public void givenWhenUserChooses_ToSearchDoctorByAvailability_ShouldReturnSearchedResult() throws IOException {
+        Doctor doctor = new Doctor("Deepak","104","Psychiatrist","5-6");
+        clinicManagementSystemMain.searchDoctorByAvailability(doctor, doctorFilePath);
+        ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>(){});
+        Assert.assertEquals(doctor.getSchedule(), data.get(3).getSchedule());
+    }
+
+    @Test
     public void givenWhenUserChooses_ToSearchPatientByName_ShouldReturnSearchedResult() throws IOException {
         Patient patient = new Patient("Mno", "3", "7410258963", "26");
         clinicManagementSystemMain.searchPatientByName(patient, patientFilePath);
