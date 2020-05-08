@@ -100,6 +100,14 @@ public class TestCaseForClinicManagementSystem {
     }
 
     @Test
+    public void givenWhenUserChooses_ToSearchDoctorBySpecialization_ShouldReturnSearchedResult() throws IOException {
+        Doctor doctor = new Doctor("Shailesh","103","Dentist","12-1");
+        clinicManagementSystemMain.searchDoctorBySpecialization(doctor, doctorFilePath);
+        ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>(){});
+        Assert.assertEquals(doctor.getSpecialization(), data.get(2).getSpecialization());
+    }
+
+    @Test
     public void givenWhenUserChooses_ToSearchPatientByName_ShouldReturnSearchedResult() throws IOException {
         Patient patient = new Patient("Mno", "3", "7410258963", "26");
         clinicManagementSystemMain.searchPatientByName(patient, patientFilePath);
