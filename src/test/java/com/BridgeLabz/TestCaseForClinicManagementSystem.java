@@ -122,11 +122,19 @@ public class TestCaseForClinicManagementSystem {
     }
 
     @Test
-    public void givenWhenUserChooses_ToSearchPatientById_ShouldReturnSearchedResult() throws IOException {
+    public void givenWhenUserChooses_ToSearchPatientByMobileNumber_ShouldReturnSearchedResult() throws IOException {
         Patient patient = new Patient("Abc", "1", "1213456798", "24");
         clinicManagementSystemMain.searchPatientByMobile(patient, patientFilePath);
         ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>(){});
         Assert.assertEquals(patient.getMobileNumber(), data.get(0).getMobileNumber());
+    }
+
+    @Test
+    public void givenWhenUserChooses_ToSearchPatientById_ShouldReturnSearchedResult() throws IOException {
+        Patient patient = new Patient("Xyz", "4", "9876541238", "27");
+        clinicManagementSystemMain.searchPatientById(patient, patientFilePath);
+        ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>(){});
+        Assert.assertEquals(patient.getId(), data.get(3).getId());
     }
 
     @Test
