@@ -20,4 +20,7 @@ public interface DoctorInterface
 
     void searchDoctorById(Doctor doctor, String doctorFilePath) throws IOException;
 
+    void searchDoctorBySpecialization(Doctor doctor, String doctorFilePath) throws IOException;
+
+
 }
