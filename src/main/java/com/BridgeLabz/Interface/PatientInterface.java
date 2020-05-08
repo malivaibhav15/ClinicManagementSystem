@@ -15,4 +15,6 @@ public interface PatientInterface
     void searchPatientByName(Patient patient, String patientFilePath) throws IOException;
 
     void searchPatientByMobile(Patient patient, String patientFilePath) throws IOException;
+
+    void searchPatientById(Patient patient, String patientFilePath) throws IOException;
 }
