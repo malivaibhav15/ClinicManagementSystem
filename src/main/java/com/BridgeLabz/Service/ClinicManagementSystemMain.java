@@ -118,6 +118,15 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
     }
 
     @Override
+    public void searchPatientByMobile(Patient patient, String patientFilePath) throws IOException {
+        ArrayList<Patient> patientArrayList = fileSystem.readFilePatient(patientFilePath);
+        for (Patient patient1 : patientArrayList) {
+            if (patient1.getMobileNumber().equals(patient.getMobileNumber()))
+                System.out.println(patient1);
+        }
+    }
+
+    @Override
     public void popularSpecialization(Doctor doctor1, String doctorFilePath) throws IOException {
         ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
         for (Doctor doctor : doctorArrayList) {
