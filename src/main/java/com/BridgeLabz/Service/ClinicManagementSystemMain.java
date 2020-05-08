@@ -99,6 +99,15 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
     }
 
     @Override
+    public void searchDoctorByAvailability(Doctor doctor, String doctorFilePath) throws IOException {
+        ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
+        for (Doctor doctor1 : doctorArrayList) {
+            if (doctor1.getSchedule().equals(doctor.getSchedule()))
+                System.out.println(doctor1);
+        }
+    }
+
+    @Override
     public void searchPatientByName(Patient patient, String patientFilePath) throws IOException {
         ArrayList<Patient> patientArrayList = fileSystem.readFilePatient(patientFilePath);
         for (Patient patient1 : patientArrayList) {
