@@ -1,0 +1,27 @@
+[
+  {
+    "doctorName": "Vaibhav" ,
+    "patientName": "Abc" ,
+    "schedule": "10-11"
+  } ,
+  {
+    "doctorName": "Vaibhav" ,
+    "patientName": "Pqr" ,
+    "schedule": "10-11"
+  } ,
+  {
+    "doctorName": "Vaibhav" ,
+    "patientName": "Mno" ,
+    "schedule": "10-11"
+  } ,
+  {
+    "doctorName": "Vaibhav" ,
+    "patientName": "Xyz" ,
+    "schedule": "10-11"
+  } ,
+  {
+    "doctorName": "Vaibhav" ,
+    "patientName": "Gef" ,
+    "schedule": "10-11"
+  }
+]
