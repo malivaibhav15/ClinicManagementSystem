@@ -135,6 +135,8 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
         }
     }
 
+
+
     @Override
     public void popularSpecialization(Doctor doctor1, String doctorFilePath) throws IOException {
         ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
@@ -159,4 +161,30 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
         data.add(appointment);
         fileSystem.writeFileAppointment(data, appointmentFilePath);
     }
+
+    @Override
+    public boolean viewReport(Patient patient, String patientFilePath) throws IOException {
+        ArrayList<Patient> patientArrayList = fileSystem.readFilePatient(patientFilePath);
+        for (Patient patient1 : patientArrayList) {
+            if (patient1.getName().equalsIgnoreCase(patient.getName()))
+            {
+                printReport();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void printReport() {
+
+        System.out.println("Name of patient : Xyz"+
+                            "age : 27yrs"+
+                            "G2 P1 L1 D0 A0"+
+                            "Chief complaint : P/V bleeding"+
+                            "Past history : None"+
+                            "Lab investigation : Sonography"+
+                            "Diagnosis : Incomplete abortion"+
+                            "Rx : D&C");
+    }
+
 }
