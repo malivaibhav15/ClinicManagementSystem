@@ -17,4 +17,6 @@ public interface PatientInterface
     void searchPatientByMobile(Patient patient, String patientFilePath) throws IOException;
 
     void searchPatientById(Patient patient, String patientFilePath) throws IOException;
+
+    boolean viewReport(Patient patient, String patientFilePath) throws IOException;
 }
