@@ -181,4 +181,11 @@ public class TestCaseForClinicManagementSystem {
         Assert.assertEquals(appointment5.getDoctorName(), data.get(4).getDoctorName());
 
     }
+
+    @Test
+    public void givenWhenUserChooses_ToSeeReport_ItShouldReturnReport() throws IOException {
+        Patient patient = new Patient("Xyz", "4", "9876541238", "27");
+        boolean report = clinicManagementSystemMain.viewReport(patient, patientFilePath);
+        Assert.assertTrue(report);
+    }
 }
