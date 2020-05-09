@@ -1,5 +1,6 @@
 package com.BridgeLabz.Interface;
 
+import com.BridgeLabz.Model.Appointment;
 import com.BridgeLabz.Model.Doctor;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ public interface DoctorInterface
 
     void searchDoctorBySpecialization(Doctor doctor, String doctorFilePath) throws IOException;
 
-
     void searchDoctorByAvailability(Doctor doctor, String doctorFilePath) throws IOException;
+
+    void addAppointment(Appointment appointment, String appointmentFilePath) throws IOException;
 }
