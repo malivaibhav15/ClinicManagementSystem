@@ -1,15 +1,15 @@
 package com.BridgeLabz.Service;
 
-import com.BridgeLabz.Interface.ClinicManagementSystemInterface;
 import com.BridgeLabz.Interface.DoctorInterface;
 import com.BridgeLabz.Interface.PatientInterface;
+import com.BridgeLabz.Model.Appointment;
 import com.BridgeLabz.Model.Doctor;
 import com.BridgeLabz.Model.Patient;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ClinicManagementSystemMain implements DoctorInterface, PatientInterface, ClinicManagementSystemInterface {
+public class ClinicManagementSystemMain implements DoctorInterface, PatientInterface {
 
     FileSystem fileSystem = new FileSystem();
 
@@ -151,5 +151,12 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
             if (doctor.getName().equalsIgnoreCase(doctor4.getName()))
                 System.out.println("Most popular doctor in this clinic is : Dr."+doctor.getName());
         }
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment, String appointmentFilePath) throws IOException {
+        ArrayList<Appointment> data = fileSystem.readFileAppointment(appointmentFilePath);
+        data.add(appointment);
+        fileSystem.writeFileAppointment(data, appointmentFilePath);
     }
 }
