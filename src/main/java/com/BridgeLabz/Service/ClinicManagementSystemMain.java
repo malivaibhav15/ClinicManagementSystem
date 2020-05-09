@@ -135,8 +135,6 @@ public class ClinicManagementSystemMain implements DoctorInterface, PatientInter
         }
     }
 
-
-
     @Override
     public void popularSpecialization(Doctor doctor1, String doctorFilePath) throws IOException {
         ArrayList<Doctor> doctorArrayList = fileSystem.readFileDoctor(doctorFilePath);
